@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С Днем рождения, бабушка!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.7;
+            color: #333;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #fff8e1, #f5f5f5);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Georgia', serif;
+            font-weight: bold;
+            color: #c2185b;
+            margin-bottom: 15px;
+        }
+
+        p {
+            font-family: 'Georgia', serif;
+            font-size: 16px;
+            color: #444;
+            margin-bottom: 18px;
+        }
+
+        /* === МОБИЛЬНАЯ ШАПКА === */
+        .mobile-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px;
+            background: #fff3e0;
+            border-bottom: 1px solid #ffcc80;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            height: 70px;
+        }
+
+        .mobile-header a, .mobile-header button {
+            color: #c2185b;
+        }
+
+        /* === ДЕСКТОПНАЯ ШАПКА === */
+        .desktop-header {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: transparent;
+            padding: 0 30px;
+            height: 70px;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 1000;
+            transition: background-color 0.3s;
+        }
+
+        .desktop-header.scrolled {
+            background: #fff8e1;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .desktop-header a {
+            color: #c2185b;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        /* === ОСНОВНЫЕ СЕКЦИИ === */
+        .about-us-section {
+            padding-top: 90px;
+            background: #fffde7;
+        }
+
+        .about-us-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .section-header h2 {
+            font-size: 36px;
+            text-align: center;
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .section-header h2::after {
+            content: "";
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: #ff4081;
+            margin: 15px auto 0;
+        }
+
+        .content-main-about {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .text-content-about {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .text-content-about h2 {
+            font-size: 28px;
+        }
+
+        .image-container {
+            flex-shrink: 0;
+            width: 350px;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border: 5px solid #ff80ab;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* === ПРОИЗВОДСТВО === */
+        .production-section {
+            background: #fff3e0;
+            padding: 80px 20px;
+        }
+
+        .production-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .production-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .production-text {
+            flex: 1 1 55%;
+        }
+
+        .production-title {
+            font-size: 32px;
+            text-transform: uppercase;
+        }
+
+        .production-image {
+            flex: 1 1 40%;
+            text-align: right;
+        }
+
+        .production-image img {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border: 3px solid #ff80ab;
+        }
+
+        /* === О НАС === */
+        .content-section {
+            padding: 80px 20px;
+            background: #fffde7;
+        }
+
+        .about-section {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 8px;
+            border: 3px solid #ff80ab;
+        }
+
+        .about-content {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-title {
+            font-size: 32px;
+            text-align: left;
+            line-height: 1.2;
+        }
+
+        /* === ФУТЕР === */
+        .footer {
+            background-color: #fff3e0;
+            padding: 40px 0;
+            font-family: 'Georgia', serif;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 30px auto 0;
+            padding: 20px 20px 0;
+            border-top: 1px solid #ff80ab;
+            font-size: 14px;
+            color: #880e4f;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-legal-links a {
+            color: #ad1457;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        /* === АДАПТИВНОСТЬ === */
+        @media (min-width: 901px) {
+            .mobile-header {
+                display: none;
+            }
+            .desktop-header {
+                display: flex;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .desktop-header {
+                display: none;
+            }
+            .mobile-header {
+                display: flex;
+            }
+
+            .production-content {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+
+            .production-image {
+                text-align: center;
+            }
+
+            .about-section {
+                flex-direction: column;
+            }
+
+            .about-title {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+  
+
+    <!-- Главная секция -->
+    <section class="about-us-section" id="about-us-main">
+        <div class="about-us-wrapper">
+           <div class="section-header">
+                <h2>С Днем рождения, бабушка!</h2>
+            </div>
+            <div class="content-main-about">
+                <div class="image-container">
+                    <img src="12.png" alt="Бабушка">
+                </div>
+                <div class="text-content-about">
+                    <h2>ДОРОГАЯ БАБУШКА, С ДНЕМ РОЖДЕНИЯ!</h2>
+                    <p>Сегодня твой день, наша любимая бабушка. Пусть этот год будет наполнен теплом, здоровьем, улыбками и любовью близких. Ты — наше солнышко, наш свет и вдохновение.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция "С любовью" -->
+    <section class="production-section">
+        <div class="production-wrapper">
+            <div class="production-content">
+                <div class="production-text">
+                    <h2 class="production-title">С ЛЮБОВЬЮ К ТЕБЕ, БАБУШКА</h2>
+                    <p>Твоя доброта, забота и мудрость — это самое ценное, что у нас есть. Спасибо за каждый день, проведенный с тобой. Пусть праздник длится вечно.</p>
+                    <p>Желаем тебе крепкого здоровья, радости и чтобы рядом всегда были любящие сердца.</p>
+                </div>
+                <div class="production-image">
+                    <img src="16.png" alt="Бабушка с семьей">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция "О нас" -->
+    <section class="content-section" id="about">
+        <div class="about-section">
+            <div class="about-image">
+                <img src="18.png" alt="Счастливая бабушка">
+            </div>
+            <div class="about-content">
+                <h2 class="about-title">С ДНЕМ РОЖДЕНИЯ, ЛЮБИМАЯ БАБУШКА</h2>
+                <p>Ты — душа нашей семьи, хранительница традиций и источник бесконечной любви. Пусть каждый день приносит тебе радость, а мы будем рядом, чтобы дарить тепло и заботу.</p>
+                <p>Здоровья тебе, бабуленька, долгих лет и чтобы в сердце всегда царил праздник.</p>
+                <p>С любовью — твои внуки и вся семья.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="footer-bottom">
+            <div class="footer-copyright">
+                © 2025. С любовью к бабушке.
+            </div>
+            <div class="footer-legal-links">
+                <a href="#">Политика конфиденциальности</a>
+                <a href="#">Условия использования</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const burgerBtn = document.getElementById('burgerBtn');
+            if (burgerBtn) {
+                burgerBtn.addEventListener('click', function() {
+                    alert('Меню будет реализовано позже');
+                });
+            }
+
+            window.addEventListener('scroll', () => {
+                const header = document.querySelector('.desktop-header');
+                if (header) {
+                    if (window.scrollY > 0) {
+                        header.classList.add('scrolled');
+                    } else {
+                        header.classList.remove('scrolled');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
